@@ -1,0 +1,23 @@
+1790. Check if One String Swap Can Make Strings Equal
+
+class Solution {
+public:
+    bool areAlmostEqual(string s1, string s2) {
+        int l = s1.length();
+        vector <int> nums;
+        for(int i=0;i<l;i++){
+            if(s1[i]!=s2[i]){
+                nums.push_back(i);
+            }
+            if(nums.size() > 2){
+                return false;
+            }
+        }
+        if(nums.size() == 2){
+            int m = nums.at(0);
+            int n = nums.at(1);
+            return (s1[m] == s2[n] && s2[m] == s1[n]);
+        }
+        return (nums.size() == 0);
+    }
+};
