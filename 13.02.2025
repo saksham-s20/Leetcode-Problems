@@ -1,0 +1,62 @@
+3066. Minimum Operations to Exceed Threshold Value II
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        int ans = 0;
+        priority_queue<long, vector<long>, greater<>> minHeap;
+
+        for (const int num : nums)
+            minHeap.push(num);
+
+        while (minHeap.size() > 1 && minHeap.top() < k) {
+            const int x = minHeap.top();
+            minHeap.pop();
+            const int y = minHeap.top();
+            minHeap.pop();
+            minHeap.push(min(x, y) * 2L + max(x, y));
+            ++ans;
+        }
+
+        return ans;
+    }
+};
+// int count = 0;
+// long long num;
+// sort(nums.begin(),nums.end(),greater<int>());
+// int n = nums.size();
+// while(nums.size()>1){
+//     long long last = nums.back();{
+//         if(last >= k){
+//             return count;
+//         }
+//         else{
+//             nums.pop_back();
+//         }
+//     }
+//     long long secondLast = nums.back();
+//     nums.pop_back();
+//     num = last * 2 + secondLast;
+//     count++;
+
+//     if(num >= k){
+//         if(nums.size() >= 1){
+//             int ln = nums.back();
+//             if(ln >= k){
+//                 return count;
+//             }
+//             else{
+//                 nums.push_back(num);
+//                 sort(nums.begin(), nums.end(), greater<int>());
+//             }
+//         }
+//         else{
+//             return count;
+//         }
+//     }
+//     else{
+//         nums.push_back(num);
+//         sort(nums.begin(), nums.end(), greater<int>());
+//     }
+// }
+// return 0;
