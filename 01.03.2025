@@ -1,0 +1,39 @@
+2460. Apply Operations to an Array in C++
+
+class Solution {
+public:
+    vector<int> applyOperations(vector<int>& nums) {
+        int n = nums.size();
+        for(int i=1;i<n;i++){
+            if(nums[i-1] == nums[i]){
+                nums[i-1] *= 2;
+                nums[i] = 0;
+            }
+        }
+        vector<int> ans;
+        for(int j=0;j<n;j++){
+            int val = nums[j];
+            if(val != 0){
+                ans.push_back(val);
+            }
+        }
+        int s = ans.size();
+        for(int k=s;k<n;k++){
+            ans.push_back(0);
+        }
+        // int i = 0, j = 0;
+        // while(i < nums.size()){
+        //     int val = nums[i];
+        //     if(val != 0){
+        //         nums[j] == val;
+        //         j++;
+        //     }
+        //     i++;
+        // }
+        // while(j < nums.size()){
+        //     nums[j] == 0;
+        //     j++;
+        // }
+        return ans;
+    }
+};
